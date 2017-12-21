@@ -5,11 +5,9 @@ import model.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 import repositories.UserRepository;
 
-import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
 
 @RestController
@@ -23,16 +21,6 @@ public class MainController {
 
   private static final String template = "Hello %s!";
   private final AtomicLong counter = new AtomicLong();
-
-  // inject via application.properties
-  @Value("${welcome.message:test}")
-  private String message = "Hello World";
-
-  @RequestMapping("/")
-  public String welcome(Map<String, Object> model) {
-    model.put("message", this.message);
-    return "welcome";
-  }
 
   @GetMapping("/greeting")
   public Greeting greeting(@RequestParam(value="name", defaultValue="World") String name) {
