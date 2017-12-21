@@ -36,7 +36,7 @@ public class MainController {
     return "sleep";
   }
 
-  @GetMapping("/add")
+  @PostMapping("/add")
   public @ResponseBody String addNewUser (@Valid @RequestBody User user) {
     userRepository.save(user);
     return "Saved";
