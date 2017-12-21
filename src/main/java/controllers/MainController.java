@@ -2,6 +2,8 @@ package controllers;
 
 import model.Greeting;
 import model.User;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import repositories.UserRepository;
@@ -15,6 +17,8 @@ public class MainController {
   @Autowired
   private UserRepository userRepository;
 
+  private final Logger logger = LoggerFactory.getLogger(MainController.class);
+
   private static final String template = "Hello %s!";
   private final AtomicLong counter = new AtomicLong();
 
@@ -25,8 +29,10 @@ public class MainController {
   }
 
   @GetMapping("/sleep")
-  public void sleep(@RequestParam(value = "timeout", defaultValue = "1") Integer timeout) throws Exception {
+  public String sleep(@RequestParam(value = "timeout", defaultValue = "1") Integer timeout) throws Exception {
+    logger.info("I'm going to sleep for " + timeout + " seconds");
     Thread.sleep((long) (timeout*1000));
+    return "sleep";
   }
 
   @GetMapping("/add")
