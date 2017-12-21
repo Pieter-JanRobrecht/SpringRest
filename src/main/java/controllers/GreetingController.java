@@ -24,5 +24,4 @@ public class GreetingController {
   public void sleep(@RequestParam(value = "timeout", defaultValue = "1") Integer timeout) throws Exception {
     Thread.sleep((long) (timeout*1000));
   }
-
 }
