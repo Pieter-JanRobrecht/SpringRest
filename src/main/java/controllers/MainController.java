@@ -33,18 +33,21 @@ public class MainController {
   public String sleep(@RequestParam(value = "timeout", defaultValue = "1") Integer timeout) throws Exception {
     logger.info("I'm going to sleep for " + timeout + " seconds");
     Thread.sleep((long) (timeout*1000));
+    logger.info("I'm awake now and I feel much better after some sleep");
     return "sleep";
   }
 
   @PostMapping("/add")
   public @ResponseBody String addNewUser (@Valid @RequestBody User user) {
+    logger.info("Saving " + user );
     userRepository.save(user);
+    logger.info(user + " saved");
     return "Saved";
   }
 
   @GetMapping("/all")
   public @ResponseBody Iterable<User> getAllUsers() {
-    // This returns a JSON or XML with the users
+    logger.info("Retrieving all users");
     return userRepository.findAll();
   }
 }
