@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import repositories.UserRepository;
 
+import javax.validation.Valid;
 import java.util.concurrent.atomic.AtomicLong;
 
 @RestController
@@ -36,12 +37,8 @@ public class MainController {
   }
 
   @GetMapping("/add")
-  public @ResponseBody String addNewUser (@RequestParam String name, @RequestParam String email) {
-    // @ResponseBody means the returned String is the response, not a view name
-    User n = new User();
-    n.setName(name);
-    n.setEmail(email);
-    userRepository.save(n);
+  public @ResponseBody String addNewUser (@Valid @RequestBody User user) {
+    userRepository.save(user);
     return "Saved";
   }
 
