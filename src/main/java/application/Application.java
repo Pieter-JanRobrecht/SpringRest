@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
 
-@SpringBootApplication(scanBasePackages = "java")
+@SpringBootApplication(scanBasePackages = {"controllers", "repositories"})
 public class Application extends SpringBootServletInitializer {
 
   public static void main(String[] args) {
