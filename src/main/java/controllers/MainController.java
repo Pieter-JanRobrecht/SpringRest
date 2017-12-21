@@ -24,17 +24,14 @@ public class MainController {
             String.format(template, name));
   }
 
-  @PostMapping("/sleep")
+  @GetMapping("/sleep")
   public void sleep(@RequestParam(value = "timeout", defaultValue = "1") Integer timeout) throws Exception {
     Thread.sleep((long) (timeout*1000));
   }
 
-  @GetMapping("/add") // Map ONLY GET Requests
-  public @ResponseBody String addNewUser (@RequestParam String name
-          , @RequestParam String email) {
+  @GetMapping("/add")
+  public @ResponseBody String addNewUser (@RequestParam String name, @RequestParam String email) {
     // @ResponseBody means the returned String is the response, not a view name
-    // @RequestParam means it is a parameter from the GET or POST request
-
     User n = new User();
     n.setName(name);
     n.setEmail(email);
