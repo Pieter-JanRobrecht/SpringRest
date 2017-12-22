@@ -30,12 +30,21 @@ public class MainController {
   }
 
   @GetMapping("/sleep")
-  public String sleep(@RequestParam(value = "timeout", defaultValue = "1") Integer timeout) throws Exception {
-    logger.info("I'm going to sleep for " + timeout + " seconds");
+  public String sleepGet(@RequestParam(value = "timeout", defaultValue = "1") Integer timeout) throws Exception {
+    logger.info("I'm going to GET sleep for " + timeout + " seconds");
     Thread.sleep((long) (timeout*1000));
     logger.info("I'm awake now and I feel much better after some sleep");
     return "sleep";
   }
+
+  @PostMapping("/sleep")
+  public String sleepPost(@RequestParam(value = "timeout", defaultValue = "1") Integer timeout) throws Exception {
+    logger.info("I'm going to POST sleep for " + timeout + " seconds");
+    Thread.sleep((long) (timeout*1000));
+    logger.info("I'm awake now and I feel much better after some sleep");
+    return "sleep";
+  }
+
 
   @PostMapping("/add")
   public @ResponseBody String addNewUser (@Valid @RequestBody User user) {
